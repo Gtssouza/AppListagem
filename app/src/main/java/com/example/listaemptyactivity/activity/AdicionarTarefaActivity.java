@@ -29,9 +29,8 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.itemSalvar:
-                Toast.makeText(AdicionarTarefaActivity.this,
-                        "Botao salvar pressionado",
-                        Toast.LENGTH_SHORT).show();
+                //Executa ação para o item salvar
+
                 break;
         }
         return super.onOptionsItemSelected(item);

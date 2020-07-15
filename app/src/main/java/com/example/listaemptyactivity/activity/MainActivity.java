@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import com.example.listaemptyactivity.R;
+import com.example.listaemptyactivity.activity.helper.DbHelper;
 import com.example.listaemptyactivity.activity.helper.RecyclerItemClickListener;
 import com.example.listaemptyactivity.adapter.TarefaAdapter;
 import com.example.listaemptyactivity.model.Tarefas;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar recycler
         recyclerView = findViewById(R.id.recyclerViewId);
+
 
         //Adicionar evento de click
         recyclerView.addOnItemTouchListener(
