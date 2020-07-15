@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import com.example.listaemptyactivity.R;
 import com.example.listaemptyactivity.activity.helper.DbHelper;
 import com.example.listaemptyactivity.activity.helper.RecyclerItemClickListener;
+import com.example.listaemptyactivity.activity.helper.TarefaDAO;
 import com.example.listaemptyactivity.adapter.TarefaAdapter;
 import com.example.listaemptyactivity.model.Tarefas;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,13 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void carregarListaTarefas(){
         //Listar tarefas
-        Tarefas tarefa1 = new Tarefas();
-        tarefa1.setNomeTarefa("Ir ao mercado");
-        listaTarefa.add(tarefa1);
-
-        Tarefas tarefa2 = new Tarefas();
-        tarefa2.setNomeTarefa("Ir ao parque");
-        listaTarefa.add(tarefa2);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaTarefa = tarefaDAO.listar();
 
         //Configurar adapter
         tarefaAdapter = new TarefaAdapter(listaTarefa);

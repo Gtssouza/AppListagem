@@ -12,11 +12,12 @@ import android.widget.Toast;
 import com.example.listaemptyactivity.R;
 import com.example.listaemptyactivity.activity.helper.TarefaDAO;
 import com.example.listaemptyactivity.model.Tarefas;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
 
-    private TextInputLayout editTarefa;
+    private TextInputEditText editTarefa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,11 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
                 //Executa ação para o item salvar
                 TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
 
+                String nomeTarefa = editTarefa.getText().toString();
                 Tarefas tarefa = new Tarefas();
-                tarefa.setNomeTarefa("Ir ao mercado");
+                tarefa.setNomeTarefa(nomeTarefa);
                 tarefaDAO.salvar(tarefa);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

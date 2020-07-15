@@ -2,12 +2,14 @@ package com.example.listaemptyactivity.activity.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.listaemptyactivity.model.Tarefas;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaDAO implements ITarefaDAO{
@@ -47,6 +49,23 @@ public class TarefaDAO implements ITarefaDAO{
 
     @Override
     public List<Tarefas> listar() {
-        return null;
+        List<Tarefas> tarefas = new ArrayList<>();
+        String sql = "SELECT * FROM " + DbHelper.TABELA_TAREFAS + " ;";
+        Cursor c = le.rawQuery(sql, null);
+
+        while (c.moveToNext()){
+
+            Tarefas tarefa = new Tarefas();
+
+            Long id =c.getLong(c.getColumnIndex("id"));
+            String nomeTarefa = c.getString(c.getColumnIndex("nome"));
+
+            tarefa.setId(id);
+            tarefa.setNomeTarefa(nomeTarefa);
+
+            tarefas.add(tarefa);
+
+        }
+        return tarefas;
     }
 }
