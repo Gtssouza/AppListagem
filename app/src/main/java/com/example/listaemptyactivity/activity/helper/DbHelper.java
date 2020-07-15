@@ -3,6 +3,7 @@ package com.example.listaemptyactivity.activity.helper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -19,11 +20,27 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Primeira vez que o app roda
-        String sql = "CREATE TABLE IF NOT EXISTS " + TABELA_TAREFAS + " (id INTEGER PRIMARY KEY) ";
+        String sql = "CREATE TABLE IF NOT EXISTS " + TABELA_TAREFAS
+                + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " nome TEXT NOT NULL ); ";
+        try{
+            db.execSQL(sql);
+            Log.i("INFO DB", "Sucesso ao criar a tabela");
+        }catch (Exception e){
+            Log.i("INFO DB", "Erro ao criar a tabela" + e.getMessage());
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Para atualizar dados
+        String sql = " DROP TABLE IF EXISTS " + TABELA_TAREFAS + " ;";
+        try{
+            db.execSQL(sql);
+            onCreate(db);
+            Log.i("INFO DB", "Sucesso ao atualizar app");
+        }catch (Exception e){
+            Log.i("INFO DB", "Erro ao atualizar app" + e.getMessage());
+        }
     }
 }
