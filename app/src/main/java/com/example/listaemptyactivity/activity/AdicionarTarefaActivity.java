@@ -10,13 +10,20 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.listaemptyactivity.R;
+import com.example.listaemptyactivity.activity.helper.TarefaDAO;
+import com.example.listaemptyactivity.model.Tarefas;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
+
+    private TextInputLayout editTarefa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_tarefa);
+
+        editTarefa = findViewById(R.id.textTarefa);
     }
 
     @Override
@@ -30,7 +37,11 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.itemSalvar:
                 //Executa ação para o item salvar
+                TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
 
+                Tarefas tarefa = new Tarefas();
+                tarefa.setNomeTarefa("Ir ao mercado");
+                tarefaDAO.salvar(tarefa);
                 break;
         }
         return super.onOptionsItemSelected(item);
